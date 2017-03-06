@@ -1,6 +1,6 @@
-/*! PhotoSwipe Default UI - 4.1.1 - 2015-12-24
+/*! PhotoSwipe Default UI - 4.1.1 - 2017-03-06
 * http://photoswipe.com
-* Copyright (c) 2015 Dmitry Semenov; */
+* Copyright (c) 2017 Dmitry Semenov; */
 /**
 *
 * UI on top of main sliding area (caption, arrows, close button, etc.).
@@ -579,6 +579,7 @@ var PhotoSwipeUI_Default =
 				( t.getAttribute('class').indexOf('__caption') > 0 || (/(SMALL|STRONG|EM)/i).test(t.tagName) ) 
 			) {
 				preventObj.prevent = false;
+				_stopAllAnimations();
 			}
 		});
 
