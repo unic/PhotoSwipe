@@ -415,6 +415,8 @@ var _gestureStartTime,
 			isCaption = false;
 
 		while (el) {
+			
+			// Seach parent nodes for caption class
 			if (el.className && el.className.indexOf('__caption') > -1) {
 				isCaption = true;
 			}
@@ -422,9 +424,10 @@ var _gestureStartTime,
 			el = el.parentNode;
 		}
 
-    	if (isCaption) {
+		// If the drag is on caption element stop what you were about to do - preventing default events and swiping 
+		if (isCaption) {
 			return;
-        }
+		}
 		// END IMPORTANT! Change - Marcin Borowski - RWRD-847
 
 		e.preventDefault();
