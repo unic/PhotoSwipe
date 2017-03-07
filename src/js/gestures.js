@@ -409,6 +409,27 @@ var _gestureStartTime,
 	// Pointermove/touchmove/mousemove handler
 	_onDragMove = function(e) {
 
+		// START IMPORTANT! Change - Marcin Borowski - RWRD-847
+		// This is caption text selection fix
+		var el = document.elementFromPoint(_currPoint.x, _currPoint.y),
+			isCaption = false;
+
+		while (el) {
+			
+			// Seach parent nodes for caption class
+			if (el.className && el.className.indexOf('__caption') > -1) {
+				isCaption = true;
+			}
+
+			el = el.parentNode;
+		}
+
+		// If the drag is on caption element stop what you were about to do - preventing default events and swiping 
+		if (isCaption) {
+			return;
+		}
+		// END IMPORTANT! Change - Marcin Borowski - RWRD-847
+
 		e.preventDefault();
 
 		if(_pointerEventEnabled) {
