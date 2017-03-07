@@ -1,6 +1,6 @@
-/*! PhotoSwipe - v4.1.1 - 2015-12-24
+/*! PhotoSwipe - v4.1.2 - 2017-03-07
 * http://photoswipe.com
-* Copyright (c) 2015 Dmitry Semenov; */
+* Copyright (c) 2017 Dmitry Semenov; */
 (function (root, factory) { 
 	if (typeof define === 'function' && define.amd) {
 		define(factory);
@@ -1738,6 +1738,23 @@ var _gestureStartTime,
 
 	// Pointermove/touchmove/mousemove handler
 	_onDragMove = function(e) {
+
+		// START IMPORTANT! Manual change - Marcin Borowski - RWRD-847
+		var el = document.elementFromPoint(_currPoint.x, _currPoint.y),
+			isCaption = false;
+
+		while (el) {
+			if (el.className && el.className.indexOf('__caption') > -1) {
+				isCaption = true;
+			}
+
+			el = el.parentNode;
+		}
+
+    	if (isCaption) {
+			return;
+        }
+		// END IMPORTANT! Manual change - Marcin Borowski - RWRD-847
 
 		e.preventDefault();
 
